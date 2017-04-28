@@ -1,0 +1,185 @@
+/* styles */
+/*@import url(https://cdn.cobi.bike/static/fonts/UniSansLight.css);
+@import url(https://cdn.cobi.bike/static/fonts/UniSansSemiBold.css);*/
+@import url(https://cdn.cobi.bike/static/fonts/UniSansRegular.css);
+@import url(https://cdn.cobi.bike/static/fonts/UniSansBook.css);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,600italic,400italic,300italic,700italic,800,800italic);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #2d2d37;
+  color: #FFF;
+  font-family: 'UniSansBook', Helvetica, Arial;
+  font-size: 3vmin;
+}
+
+.hidden {
+  display: none;
+}
+
+/** Buttons **/
+.btn {
+  background-color: transparent;
+  border-radius: 2em;
+  border: 0.13em solid #1ed760;
+  color: #1ed760;
+  cursor: pointer;
+  font-size: 5.5vmin;
+  font-family: 'UniSansRegular', Helvetica, Arial;
+  letter-spacing: .06em;
+  padding: 0.7em 1.2em 0.6em 1.2em;
+  /*text-transform: uppercase;*/
+  transition: all 0.20s ease;
+}
+
+.btn:hover {
+  background: #1ed760;
+  color: #333;
+}
+
+.btn--login {
+  margin: 0 auto;
+}
+
+/** Now Playing **/
+.now-playing__playlist {
+  font-size: 2em;
+  margin-bottom: 1.5em;
+}
+
+.now-playing__name {
+  font-size: 2.3em;
+  font-family: 'UniSansRegular', Helvetica, Arial;
+  letter-spacing: .04em;
+  margin-bottom: 0.2em;
+}
+
+.now-playing__artist {
+  font-size: 1.8em;
+  margin-bottom: 1.5em;
+  letter-spacing: .03em;
+  font-family: 'UniSansRegular', Helvetica, Arial;
+}
+
+.now-playing__status {
+  margin-bottom: 1.9em;
+  font-family: 'Open Sans', Helvetica, Arial;
+  letter-spacing: .01em;
+  font-weight: 400;
+}
+
+.now-playing__img {
+  float:left;
+  border-radius: .5em;
+  margin-right: 10px;
+  width: 45%;
+  /*box-shadow: 0 25px 140px -50px #85a2ce;*/
+}
+
+/** http://stackoverflow.com/questions/24709915/blur-the-edges-of-an-image-or-background-image-with-css **/
+.now-playing__img_blur {
+  float:left;
+  border-radius: .5em;
+  margin-right: 10px;
+  width: 45%;
+  -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  -o-filter: blur(20px);
+  -ms-filter: blur(20px);
+  filter: blur(20px);
+}
+
+.now-playing__side {
+  margin-left: 5%;
+  width: 65%;
+}
+
+/** Progress *
+.progress {
+  border: 0.12em solid #fff;
+  height: 1em;
+  border-radius: 2em;
+  opacity:.8;
+}
+
+.progress__bar {
+  background-color: #fff;
+  border: 0.42em solid transparent;
+  height: 0.78em;
+  margin-left: -2px;
+  border-radius: 1.9em;
+  
+}*/
+
+
+/** Progress **/
+.progress {
+  border: 0.05em solid #fff;
+  height: 0.3em;
+  border-radius: .2em;
+}
+
+.progress__bar {
+  background-color: #fff;
+  border: 0em solid transparent;
+  height: 0.2em;
+  margin-left: -1px;
+  border-radius: .2em;
+}
+
+/** Background **/
+.background {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center center;
+  /*filter: blur(3em) opacity(0.6);*/
+  opacity:.25;
+  filter: blur(30px);
+  position: absolute;
+}
+
+.main-wrapper {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  position: relative;
+  width: 90%;
+  z-index: 1;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+dialog {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #2d2d37;
+    color: white;
+}
+
+.settings-left {
+  float:left;
+  margin-right: 10px;
+  width: 45%;
+}
+
+.settings-right {
+  margin-left: 5%;
+  width: 65%;
+}

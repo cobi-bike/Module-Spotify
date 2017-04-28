@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Now Playing on Spotify</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+<body>
+  <div class="container">
+    <div class="login-container hidden" id="js-login-container">
+      <button class="btn btn--login" id="js-btn-login">Login with Spotify</button>
+    </div>
+    <div class="hidden" id="js-main-container"></div>
+    <div class="hidden" id="js-settings-container"></div>
+    
+    <div id="settings-container">
+      <dialog id="settings">
+        <p>COBI Spotify Webapp - Settings</p>
+        
+        <div class="settings-left">
+          <ul style="list-style: none;">
+            <li>Thumb Controller</li>
+            <li>left / right</li>
+            <li>up / down</li>
+            <li>select / touch</li>
+          </ul>          
+        </div>
+        <div class="settings-right">
+          <select>
+            <option value="lrtrack">Previous / Next Track</option>
+            <option value="lrplaylist">Previous / Next Playlist</option>
+          </select>   
+        </div>
+
+
+      </dialog>      
+    </div>
+
+      
+
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+  <script src="//cdn.cobi.bike/cobi.js/latest/cobi.js"></script>
+  <script src="spotify-player.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
