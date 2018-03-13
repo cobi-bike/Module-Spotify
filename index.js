@@ -5,9 +5,7 @@ var bodyParser = require('body-parser');
 var request = require('request');
 
 var app = express();
-var morgan = require('morgan');
 
-app.use(morgan('combined'))
 app.use(cookieParser());
 app.use(bodyParser.json());
 
@@ -58,7 +56,6 @@ app.get('/', function(req, res) {
 app.get('/login', function(req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
-  console.log(req.query)
   // your application requests authorization
   var scope = 'user-read-playback-state';
   
@@ -113,7 +110,6 @@ app.get('/callback', function(req, res) {
             refresh_token = body.refresh_token,
             expires_in = body.expires_in;
 
-        console.log(`everything is fine, accesstoken ${access_token}`);
         res.cookie('refresh_token', refresh_token, {maxAge: 30 * 24 * 3600 * 1000, domain: 'localhost'});
         
         res.redirect(`/?refresh_token=${refresh_token}&access_token=${access_token}&expires_in=${expires_in}`)
