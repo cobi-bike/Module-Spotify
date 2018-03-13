@@ -1,4 +1,4 @@
-// get refreshToken from query
+// Get refreshToken query parameter
 function getQueryVariable(variable) {
   var query = window.location.search.substring(1);
   var vars = query.split("&");
@@ -10,6 +10,7 @@ function getQueryVariable(variable) {
   } 
 }
 
+// Store in local storage
 if (getQueryVariable('refresh_token')) {
   localStorage.setItem('refreshToken', getQueryVariable('refresh_token'));
 }
@@ -21,6 +22,8 @@ var mainContainer = document.getElementById('js-main-container'),
     loginButton = document.getElementById('js-btn-login'),
     background = document.getElementById('js-background');
 
+
+// Create spotify player with backend as exchange host
 var spotifyPlayer = new SpotifyPlayer({
   exchangeHost: host
 });
@@ -46,11 +49,12 @@ var template = function (data) {
 };
 
 
+// Show and update player ui continiously
 spotifyPlayer.on('update', response => {
-
   mainContainer.innerHTML = template(response);
 });
 
+// Store playlists of user in array
 spotifyPlayer.on('playlists', response => {
   playlists.raw = response
   response.forEach((playlist) => {
@@ -59,6 +63,7 @@ spotifyPlayer.on('playlists', response => {
 
 });
 
+// Hide login panel and show player after succesful authorization
 spotifyPlayer.on('login', user => {
   if (user === null) {
     loginContainer.style.display = 'block';
@@ -69,6 +74,7 @@ spotifyPlayer.on('login', user => {
   }
 });
 
+// Log into spotify on click
 loginButton.addEventListener('click', () => {
     spotifyPlayer.login();
 });
@@ -80,6 +86,7 @@ spotifyPlayer.init();
 COBI.init('token');
 COBI.devkit.overrideThumbControllerMapping.write(true);
 
+// Hook hub presses with spotify player
 COBI.hub.externalInterfaceAction.subscribe(function(action) {
     if (action == 'LEFT') spotifyPlayer.previous();
     if (action == 'RIGHT') spotifyPlayer.next();
