@@ -9,7 +9,6 @@ var app = express();
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-var DEV = process.env.DEV ? true : false;
 var stateKey = 'spotify_auth_state';
 
 var client_id = process.env.CLIENT_ID;
@@ -84,10 +83,7 @@ app.get('/callback', function(req, res) {
 
   if (state === null || state !== storedState) {
     console.log('state mismatch', 'state: ' + state, 'storedState ' + storedState, 'cookies ', req.cookies);
-    res.render('pages/callback', {
-      access_token: null,
-      expires_in: null
-    });
+    res.status(500).send('State mismatch');
   } else {
     res.clearCookie(stateKey);
     var authOptions = {
@@ -113,19 +109,9 @@ app.get('/callback', function(req, res) {
         res.cookie('refresh_token', refresh_token, {maxAge: 30 * 24 * 3600 * 1000, domain: 'localhost'});
         
         res.redirect(`/?refresh_token=${refresh_token}&access_token=${access_token}&expires_in=${expires_in}`)
-        /*
-        res.render('pages/callback', {
-          access_token: access_token,
-          expires_in: expires_in,
-          refresh_token: refresh_token
-        });*/
       } else {
         console.log('wrong token');
-
-        res.render('pages/callback', {
-          access_token: null,
-          expires_in: null
-        });
+        res.status(500).send('Wrong token');
       }
     });
   }
