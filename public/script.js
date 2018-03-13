@@ -11,7 +11,7 @@ function getQueryVariable(variable) {
 }
 
 if (getQueryVariable('refresh_token')) {
-  localStorage.refreshToken = getQueryVariable('refresh_token')
+  localStorage.setItem('refreshToken', getQueryVariable('refresh_token'));
 }
 
 var mainContainer = document.getElementById('js-main-container'),
