@@ -43,7 +43,7 @@ Set the environment variable `CLIENT_ID`, `CLIENT_SECRET` and `HOST` with your a
 
 The app is accessible under [localhost:8888](http://localhost:8888/) after starting the Node.js server with:
 ``` bash
-	PORT=8888 CLIENT_ID=... CLIENT_SECRET=... HOST=... node index.js
+PORT=8888 CLIENT_ID=... CLIENT_SECRET=... HOST=... node index.js
 ```  
 The settings menu can be accessed with the [?state=edit](http://localhost:8888/?state=edit) suffix.
 
