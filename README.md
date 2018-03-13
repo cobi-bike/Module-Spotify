@@ -31,6 +31,8 @@ Follow the [instructions](https://github.com/cobi-bike/DevKit#-test-your-module)
 
 Create a [Spotify Developer account](https://beta.developer.spotify.com/dashboard/applications) and register a new application to retrieve your api credentials.
 
+You also have to register one or more callback urls in the Spotify Developer backend, for example: `http://localhost:3000/callback`
+
 
 ### Step 4: Set environment variables
 
