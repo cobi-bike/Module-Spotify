@@ -18,7 +18,7 @@ var host = process.env.HOST;
 var redirect_uri = host + '/callback';
 
 // Set default port
-app.set('port', (process.env.PORT || 3000));
+app.set('port', process.env.PORT || 3000);
 
 // Serve static js and css files
 app.use(express.static(__dirname + '/public'));
@@ -42,10 +42,13 @@ var generateRandomString = function(length) {
   return text;
 };
 
-app.all('*', function(req,res,next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With'
+  );
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, OPTIONS');
   next();
 });
 
@@ -53,7 +56,7 @@ app.all('*', function(req,res,next) {
 app.get('/', function(req, res) {
   // Host config variable gets passed to client side script
   res.render('pages/index', {
-    host: host,
+    host: host
   });
 });
 
@@ -63,24 +66,25 @@ app.get('/login', function(req, res) {
   res.cookie(stateKey, state);
   // your application requests authorization
   var scope = 'user-read-playback-state';
-  
+
   if (req.query.scope) {
-    scope = req.query.scope
+    scope = req.query.scope;
   }
 
-  res.redirect('https://accounts.spotify.com/authorize?' +
-    querystring.stringify({
-      response_type: 'code',
-      client_id: client_id,
-      scope: scope,
-      redirect_uri: redirect_uri,
-      state: state
-    }));
+  res.redirect(
+    'https://accounts.spotify.com/authorize?' +
+      querystring.stringify({
+        response_type: 'code',
+        client_id: client_id,
+        scope: scope,
+        redirect_uri: redirect_uri,
+        state: state
+      })
+  );
 });
 
 // Gets called by spotify backend for authorization
 app.get('/callback', function(req, res) {
-
   // your application requests refresh and access tokens
   // after checking the state parameter
 
@@ -103,23 +107,23 @@ app.get('/callback', function(req, res) {
         grant_type: 'authorization_code'
       },
       headers: {
-        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+        Authorization: 'Basic ' + new Buffer(client_id + ':' + client_secret).toString('base64')
       },
       json: true
     };
 
     request.post(authOptions, function(error, response, body) {
       if (!error && response.statusCode === 200) {
-        // Redirect valid access token to client 
+        // Redirect valid access token to client
 
         var access_token = body.access_token,
-            refresh_token = body.refresh_token,
-            expires_in = body.expires_in;
+          refresh_token = body.refresh_token,
+          expires_in = body.expires_in;
 
         // Store access token as cookie with 30 days age limit
-        res.cookie('refresh_token', refresh_token, {maxAge: 30 * 24 * 3600 * 1000, domain: 'localhost'});
-        
-        res.redirect(`/?refresh_token=${refresh_token}&access_token=${access_token}&expires_in=${expires_in}`)
+        res.cookie('refresh_token', refresh_token, { maxAge: 30 * 24 * 3600 * 1000, domain: 'localhost' });
+
+        res.redirect(`/?refresh_token=${refresh_token}&access_token=${access_token}&expires_in=${expires_in}`);
       } else {
         console.log('wrong token');
         res.status(500).send('Wrong token');
@@ -140,7 +144,7 @@ app.post('/token', function(req, res) {
         grant_type: 'refresh_token'
       },
       headers: {
-        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+        Authorization: 'Basic ' + new Buffer(client_id + ':' + client_secret).toString('base64')
       },
       json: true
     };
@@ -149,7 +153,7 @@ app.post('/token', function(req, res) {
         // Send valid access token to client
 
         var access_token = body.access_token,
-            expires_in = body.expires_in;
+          expires_in = body.expires_in;
 
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify({ access_token: access_token, expires_in: expires_in }));
