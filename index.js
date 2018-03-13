@@ -16,7 +16,7 @@ var client_secret = process.env.CLIENT_SECRET;
 var host = process.env.HOST;
 var redirect_uri = host + '/callback';
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 3000));
 
 app.use(express.static(__dirname + '/public'));
 
