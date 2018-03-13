@@ -22,7 +22,7 @@ var mainContainer = document.getElementById('js-main-container'),
     background = document.getElementById('js-background');
 
 var spotifyPlayer = new SpotifyPlayer({
-  exchangeHost: 'https://cobi-spotify.glitch.me'
+  exchangeHost: host
 });
 
 var playlists = {};

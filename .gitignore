@@ -3,7 +3,7 @@
 /.bashrc
 /.config
 /.data
-/.DS_Store
+.DS_Store
 /.env
 /.glitch-assets
 /.gitconfig

@@ -16,12 +16,12 @@ var stateKey = 'spotify_auth_state';
 
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;
-var redirect_uri = process.env.REDIRECT_URI;
+var host = process.env.HOST;
+var redirect_uri = host + '/callback';
 
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/example'));
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -47,6 +47,12 @@ app.all('*', function(req,res,next) {
   res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
   next();
+});
+
+app.get('/', function(req, res) {
+  res.render('pages/index', {
+    host: host,
+  });
 });
 
 app.get('/login', function(req, res) {
