@@ -1,9 +1,9 @@
-# »Spotify«-App for COBI.bike
+# Spotify DevKit module for COBI.bike
 
-The »Spotify«-App allows the user to control the Spotify-Player remotely.
-Its part of a collection of Open Source [modules](https://cobi.bike/devkit) for [COBI.bike](https://cobi.bike).
+The Spotify DevKit module allows the user to control the Spotify-Player remotely using the Spotify connect protocol.
+Its part of a collection of Open Source [modules](https://cobi.bike/devkit) for the [COBI.bike](https://cobi.bike) system.
 
-![COBI.bike News App](screenshot.jpeg)
+<img src="https://cdn.cobi.bike/static/devkit-assets/github/DevKit_module_Spotify.jpg" width="500px" alt="COBI.bike Spotify module">
 
 ## Quickstart: Interactive Demo
 
