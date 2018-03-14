@@ -9,7 +9,7 @@ Its part of a collection of Open Source [modules](https://cobi.bike/devkit) for 
 
 The quickest way to test the app:
 
-[<img src="https://raw.githubusercontent.com/cobi-bike/DevKit/master/resources/open-demo-btn.png" width="170px" alt="Open demo button">](https://glitch.com/edit/#!/import/github/cobi-bike/Module-Spotify)
+[<img src="https://cdn.cobi.bike/static/devkit-assets/github/open_demo_button.png" width="170px" alt="Open demo button">](https://glitch.com/edit/#!/import/github/cobi-bike/Module-Spotify)
 
 ## Installation and Setup
 
