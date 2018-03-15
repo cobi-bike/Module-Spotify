@@ -1,21 +1,15 @@
 {
-  "name": "spotify-player",
+  "name": "cobi-module-spotify",
   "version": "0.0.1",
-  "description": "",
+  "description": "The Spotify DevKit module allows the user to control the Spotify-Player remotely using the Spotify connect protocol.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JMPerez/spotify-player.git"
+    "url": "https://github.com/cobi-bike/Module-Spotify/"
   },
-  "author": "",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/JMPerez/spotify-player/issues"
-  },
-  "homepage": "https://github.com/JMPerez/spotify-player#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
