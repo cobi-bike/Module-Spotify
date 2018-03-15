@@ -41,12 +41,18 @@ Set the environment variable `CLIENT_ID`, `CLIENT_SECRET` and `HOST` with your a
 
 ### Step 5: Run Node.js server
 
-The app is accessible under [localhost:8888](http://localhost:8888/) after starting the Node.js server with:
+The module is accessible under [localhost:8888](http://localhost:8888/) after starting the Node.js server with:
 ``` bash
 PORT=8888 CLIENT_ID=... CLIENT_SECRET=... HOST=... node index.js
 ```  
 The settings menu can be accessed with the [?state=edit](http://localhost:8888/?state=edit) suffix.
 
+---
+
+## Credits
+This module uses Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to these developers for their contributions to open source.
+
+[Spotify Player](https://github.com/JMPerez/spotify-player) by José M. Pérez (MIT)
 
 ## Useful DevKit links
 
