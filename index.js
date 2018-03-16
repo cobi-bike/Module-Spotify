@@ -17,6 +17,12 @@ var client_secret = process.env.CLIENT_SECRET;
 var host = process.env.HOST;
 var redirect_uri = host + '/callback';
 
+// If env variables are not set, quit application with error exit code
+if (!client_id || !client_secret || !host) {
+  console.log("Error: Missing environment variables")
+  process.exit(1);
+}
+
 // Set default port
 app.set('port', process.env.PORT || 3000);
 
