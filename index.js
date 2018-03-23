@@ -129,7 +129,7 @@ app.get('/callback', function(req, res) {
         // Store access token as cookie with 30 days age limit
         res.cookie('refresh_token', refresh_token, { maxAge: 30 * 24 * 3600 * 1000, domain: 'localhost' });
 
-        res.redirect(`/?refresh_token=${refresh_token}&access_token=${access_token}&expires_in=${expires_in}`);
+        res.redirect(`${host}/?refresh_token=${refresh_token}&access_token=${access_token}&expires_in=${expires_in}`);
       } else {
         console.log('wrong token');
         res.status(500).send('Wrong token');
