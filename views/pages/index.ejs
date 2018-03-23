@@ -4,19 +4,27 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
 <body>
-  <div class="container">
-    <div class="login-container hidden" id="js-login-container">
-      <button class="btn btn--login" id="js-btn-login">Login with <i class="fa fa-spotify fa-1x"></i> </button>
-    </div>
-    <div class="hidden" id="js-main-container"></div>
-    <div class="hidden" id="js-playlist-container"></div>
-  </div>
-  <script>
-    var host = '<%= host %>';
-  </script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
-  <script src="https://cdn.cobi.bike/cobi.js/0.34.1/cobi.js"></script>
-  <script src="spotify-player.js"></script>
-  <script src="script.js"></script>
+   <div class="container">
+      <div id="experience">
+         <div class="login-container hidden" id="js-login-container">
+            <button class="btn btn--login" id="js-btn-login">Login with <i class="fa fa-spotify fa-1x"></i> </button>
+         </div>
+         <div class="hidden" id="js-main-container"></div>
+         <div class="hidden" id="js-playlist-container"></div>
+      </div>
+
+      <div id="edit">
+         <div class="login-container" >
+            <button class="btn btn--logout disabled" id="js-btn-logout">Logout</button>
+         </div>
+      </div>  
+   </div>
+   <script>
+      var host = '<%= host %>';
+   </script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+   <script src="https://cdn.cobi.bike/cobi.js/0.34.1/cobi.js"></script>
+   <script src="spotify-player.js"></script>
+   <script src="script.js"></script>
 </body>
 </html>

@@ -101,6 +101,7 @@ class SpotifyPlayer {
     }
     this.accessToken = null;
     this.dispatch('login', null);
+    localStorage.removeItem('refreshToken');
   }
 
   login() {
@@ -259,6 +260,10 @@ class SpotifyPlayer {
 
   fetchUser() {
     return this.fetchGeneric('https://api.spotify.com/v1/me').then(data => data.json());
+  }
+
+  isLoggedIn() {
+    return this.id != null;
   }
 
   togglePlay() {

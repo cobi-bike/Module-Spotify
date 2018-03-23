@@ -43,6 +43,21 @@ body {
   margin: 0 auto;
 }
 
+.btn--logout {
+  color: #f74f4f;
+  border-color: #f74f4f;
+}
+.btn--logout:hover {
+  background: #f74f4f;
+  color: #333;
+}
+
+.btn--logout.disabled {
+  pointer-events: none;
+  color: #525050;
+  border-color: #525050;
+}
+
 /** Now Playing **/
 .now-playing__playlist {
   font-size: 2em;

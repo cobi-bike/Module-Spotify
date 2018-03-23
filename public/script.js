@@ -20,6 +20,7 @@ var mainContainer = document.getElementById('js-main-container'),
   playlistContainer = document.getElementById('js-playlist-container'),
   loginContainer = document.getElementById('js-login-container'),
   loginButton = document.getElementById('js-btn-login'),
+  logoutButton = document.getElementById('js-btn-logout'),
   background = document.getElementById('js-background');
 
 // Create spotify player with backend as exchange host
@@ -72,6 +73,7 @@ spotifyPlayer.on('login', user => {
     loginContainer.style.display = 'block';
     mainContainer.style.display = 'none';
   } else {
+    logoutButton.className = logoutButton.className.replace(' disabled', '');
     loginContainer.style.display = 'none';
     mainContainer.style.display = 'block';
   }
@@ -82,6 +84,12 @@ loginButton.addEventListener('click', () => {
   spotifyPlayer.login();
 });
 
+logoutButton.addEventListener('click', () => {
+  if (spotifyPlayer.isLoggedIn()) {
+    spotifyPlayer.logout();
+  }
+});
+
 spotifyPlayer.init();
 
 // COBI.js
@@ -89,10 +97,18 @@ spotifyPlayer.init();
 COBI.init('token');
 COBI.devkit.overrideThumbControllerMapping.write(true);
 
-// Hook hub presses with spotify player
-COBI.hub.externalInterfaceAction.subscribe(function(action) {
-  if (action == 'LEFT') spotifyPlayer.previous();
-  if (action == 'RIGHT') spotifyPlayer.next();
-  if (action == 'SELECT') spotifyPlayer.togglePlay();
-  if (action == 'DOWN') spotifyPlayer.addCurrentToCobiPlaylist();
-});
+// Check if where in main menu oder settings menu
+if (COBI.parameters.state() == COBI.state.edit) {
+  document.getElementById('experience').style.display = 'none';
+} else {
+  document.getElementById('edit').style.display = 'none';
+
+  // Hook hub presses with spotify player
+  COBI.hub.externalInterfaceAction.subscribe(function(action) {
+    if (action == 'LEFT') spotifyPlayer.previous();
+    if (action == 'RIGHT') spotifyPlayer.next();
+    if (action == 'SELECT') spotifyPlayer.togglePlay();
+    if (action == 'DOWN') spotifyPlayer.addCurrentToCobiPlaylist();
+  });
+}
+
