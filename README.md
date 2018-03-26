@@ -23,29 +23,31 @@ Clone this repository and install Node.js dependencies with:
 npm install
 ```  
 
-### Step 2: Install COBI.bike DevKit
 
-Follow the [instructions](https://github.com/cobi-bike/DevKit#-test-your-module) to install the COBI.bike Google Chrome Simulator and get familiar with the basics of module development on the COBI plattform.
-
-### Step 3: Create a Spotify app 
+### Step 2: Create a Spotify app 
 
 Create a [Spotify Developer account](https://beta.developer.spotify.com/dashboard/applications) and register a new application to retrieve your api credentials.
 
 You also have to register one or more callback urls in the Spotify Developer backend, for example: `http://localhost:3000/callback`
 
 
-### Step 4: Set environment variables
+### Step 3: Set environment variables
 
 Set the environment variable `CLIENT_ID`, `CLIENT_SECRET` and `HOST` with your api credentials from spotify. `HOST` defines the url basename to the backend server, for example: `HOST='http://localhost:3000'`
 
 
-### Step 5: Run Node.js server
+### Step 4: Run Node.js server
 
-The module is accessible under [localhost:8888](http://localhost:8888/) after starting the Node.js server with:
+The module is accessible under [localhost:3000](http://localhost:3000/) after starting the Node.js server with:
 ``` bash
-PORT=8888 CLIENT_ID=... CLIENT_SECRET=... HOST=... node index.js
+CLIENT_ID=... CLIENT_SECRET=... HOST=... node index.js
 ```  
-The settings menu can be accessed with the [?state=edit](http://localhost:8888/?state=edit) suffix.
+The settings menu can be accessed with the [?state=edit](http://localhost:3000/?state=edit) suffix.
+
+
+### _Optional_: Install COBI.bike DevKit Simulator
+
+Follow the [instructions](https://github.com/cobi-bike/DevKit#-test-your-module) to install the COBI.bike Google Chrome Simulator and get familiar with the basics of module development on the COBI plattform.
 
 ---
 
