@@ -54,7 +54,9 @@ Follow the [instructions](https://github.com/cobi-bike/DevKit#-test-your-module)
 ## Credits
 This module uses Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to these developers for their contributions to open source.
 
-[Spotify Player](https://github.com/JMPerez/spotify-player) by José M. Pérez (MIT)
+* [Spotify Player](https://github.com/JMPerez/spotify-player) by José M. Pérez (MIT)
+* [Spotify-Conect-WS](https://github.com/lrholmes/spotify-connect-ws/) by Lawrence Holmes (MIT)
+
 
 ## Useful DevKit links
 
