@@ -30,42 +30,82 @@ var spotifyPlayer = new WebsocketSpotifyPlayer({
 
 var playlists = {};
 
-var template = function(data) {
-  return `
-    <div class="main-wrapper">
-      <img class="now-playing__img" src="${data.item.album.images[0].url}">
-      <div class="now-playing__side" id="side">
-        ${
-          data.context && data.context.type == 'playlist' && playlists[data.context.uri]
-            ? `<div class="now-playing__playlist">${playlists[data.context.uri]}</div>`
-            : ''
-        }
-        <div class="now-playing__name">${data.item.name}</div>
-        <div class="now-playing__artist">${data.item.artists[0].name}</div>
-        <div class="now-playing__status">${data.is_playing ? 'Playing' : 'Paused'}${
-    data.is_playing && data.device ? ` on ${data.device.name}` : ''
-  }</div>
-        <div class="progress">
-          <div class="progress__bar" style="width:${data.progress_ms * 100 / data.item.duration_ms}%"></div>
-        </div>
-      </div>
-    </div>
-    <div class="background" style="background-image:url(${data.item.album.images[0].url})"></div>
-  `;
-};
+var playerImage = document.getElementsByClassName('now-playing__img')[0];
+var playerBackgroundImage = document.getElementsByClassName('background')[0];
+var playerTitle = document.getElementsByClassName('now-playing__name')[0];
+var playerArtist = document.getElementsByClassName('now-playing__artist')[0];
+var playerStatus = document.getElementsByClassName('now-playing__status')[0];
+var playerProgress = document.getElementsByClassName('progress__bar')[0];
 
-// Show and update player ui continiously
-spotifyPlayer.on('update', response => {
-  mainContainer.innerHTML = template(response);
+var isPlaying = false;
+var progress = 0;
+var duration = 0;
+
+// Start automatic progress loop
+function progressLoop() {
+  // Increase progress if track is played
+  if (isPlaying) {
+    progress += 1000;
+  }
+  updateProgress()
+  setTimeout(progressLoop, 1000);
+}
+progressLoop();
+
+// Update progress bar
+function updateProgress() {
+  playerProgress.style.width = progress * 100 / duration + '%';  
+}
+
+// Update track information and metadata
+function updateTrack(track) {
+  playerTitle.innerHTML = track.name;
+  playerArtist.innerHTML = track.artists[0].name;
+  playerImage.src = track.album.images[0].url;
+  playerBackgroundImage.style.backgroundImage = 'url(' + track.album.images[0].url + ')';
+}
+
+// Update play/pause button
+function updatePlayPause() {
+  playerStatus.innerHTML = isPlaying ? 'Playing' : 'Paused';
+}
+
+// Player successfullyinitialized
+spotifyPlayer.on('initial_state', player => {
+  updateTrack(player.item);
+  progress = player.progress_ms;
+  duration = player.item.duration_ms;
+  updateProgress();
+  isPlaying = player.is_playing
+  updatePlayPause();
 });
 
-// Store playlists of user in array
-spotifyPlayer.on('playlists', response => {
-  playlists.raw = response;
-  response.forEach(playlist => {
-    playlists[playlist.uri] = playlist.name;
-  });
+// Track changed
+spotifyPlayer.on('track_change', track => {
+  updateTrack(track);
+  progress = 0;
+  duration = track.duration_ms;
+  updateProgress();
 });
+
+// Track has ended
+spotifyPlayer.on('track_end', track => {
+  progress = duration;
+  updateProgress();
+});
+
+// Play button pressed
+spotifyPlayer.on('playback_started', track => {
+  isPlaying = true;
+  updatePlayPause();
+});
+
+// Pause button pressed
+spotifyPlayer.on('playback_paused', track => {
+  isPlaying = false;
+  updatePlayPause();
+});
+
 
 
 // Hide login panel and show player after succesful authorization
