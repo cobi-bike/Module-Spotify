@@ -1,41 +1,20 @@
-// Get refreshToken query parameter
-function getQueryVariable(variable) {
-  var query = window.location.search.substring(1);
-  var vars = query.split('&');
-  for (var i = 0; i < vars.length; i++) {
-    var pair = vars[i].split('=');
-    if (pair[0] == variable) {
-      return pair[1];
-    }
-  }
-}
 
-// Store in local storage
-if (getQueryVariable('refresh_token')) {
-  localStorage.setItem('refreshToken', getQueryVariable('refresh_token'));
-}
-
-var mainContainer = document.getElementById('js-main-container'),
-  sideContainer = document.getElementById('side'),
-  playlistContainer = document.getElementById('js-playlist-container'),
-  loginContainer = document.getElementById('js-login-container'),
-  loginButton = document.getElementById('js-btn-login'),
-  logoutButton = document.getElementById('js-btn-logout'),
-  background = document.getElementById('js-background');
-
-// Create spotify player with backend as exchange host
-var spotifyPlayer = new WebsocketSpotifyPlayer({
-  exchangeHost: host
-});
-
-var playlists = {};
-
+var loginContainer = document.getElementById('js-login-container');
+var mainContainer = document.getElementById('js-main-container');
+var loginButton = document.getElementById('js-btn-login');
+var logoutButton = document.getElementById('js-btn-logout');
 var playerImage = document.getElementsByClassName('now-playing__img')[0];
 var playerBackgroundImage = document.getElementsByClassName('background')[0];
 var playerTitle = document.getElementsByClassName('now-playing__name')[0];
 var playerArtist = document.getElementsByClassName('now-playing__artist')[0];
 var playerStatus = document.getElementsByClassName('now-playing__status')[0];
 var playerProgress = document.getElementsByClassName('progress__bar')[0];
+
+// Create spotify player with backend as exchange host
+var spotifyPlayer = new WebsocketSpotifyPlayer({
+  exchangeHost: host
+});
+
 
 var isPlaying = false;
 var progress = 0;
@@ -125,10 +104,10 @@ logoutButton.addEventListener('click', () => {
   }
 });
 
+// Request token and connect with websocket
 spotifyPlayer.init();
 
 // COBI.js
-
 COBI.init('token');
 COBI.devkit.overrideThumbControllerMapping.write(true);
 

@@ -23,6 +23,11 @@ class SpotifyPlayer {
   }
 
   init() {
+    // Store refresh token in local storage
+    if (getQueryVariable('refresh_token')) {
+      localStorage.setItem('refreshToken', getQueryVariable('refresh_token'));
+    }
+    // Fetch access token with the refresh token
     this.fetchToken()
       .then(r => r.json())
       .then(json => {
@@ -95,4 +100,16 @@ class SpotifyPlayer {
     });
   }
 
+}
+
+// Get refreshToken query parameter
+function getQueryVariable(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split('&');
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split('=');
+    if (pair[0] == variable) {
+      return pair[1];
+    }
+  }
 }
