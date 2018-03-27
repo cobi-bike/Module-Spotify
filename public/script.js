@@ -24,7 +24,7 @@ var mainContainer = document.getElementById('js-main-container'),
   background = document.getElementById('js-background');
 
 // Create spotify player with backend as exchange host
-var spotifyPlayer = new SpotifyPlayer({
+var spotifyPlayer = new WebsocketSpotifyPlayer({
   exchangeHost: host
 });
 
@@ -66,6 +66,7 @@ spotifyPlayer.on('playlists', response => {
     playlists[playlist.uri] = playlist.name;
   });
 });
+
 
 // Hide login panel and show player after succesful authorization
 spotifyPlayer.on('login', user => {
@@ -111,4 +112,5 @@ if (COBI.parameters.state() == COBI.state.edit) {
     if (action == 'DOWN') spotifyPlayer.addCurrentToCobiPlaylist();
   });
 }
+
 
