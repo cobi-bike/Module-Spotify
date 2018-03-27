@@ -3,7 +3,7 @@ class WebsocketSpotifyPlayer extends SpotifyPlayer {
 
   constructor(options = {}) {
     super(options);
-    this.socket = io('https://spotify-connect-ws.herokuapp.com/connect')
+    this.socket = io(this.exchangeHost + '/connect')
   }
 
   // Also allow to register websocket events
