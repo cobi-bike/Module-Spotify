@@ -27,9 +27,8 @@ function progressLoop() {
     progress += 1000;
   }
   updateProgress()
-  setTimeout(progressLoop, 1000);
 }
-progressLoop();
+setInterval(progressLoop, 1000);
 
 // Update progress bar
 function updateProgress() {
@@ -99,9 +98,7 @@ loginButton.addEventListener('click', () => {
 
 // Log out on click
 logoutButton.addEventListener('click', () => {
-  if (spotifyPlayer.isLoggedIn()) {
-    spotifyPlayer.logout();
-  }
+  spotifyPlayer.logout();
 });
 
 // Request token and connect with websocket
