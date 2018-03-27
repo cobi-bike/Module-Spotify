@@ -72,12 +72,18 @@ function updatePlayPause() {
 
 // Player successfullyinitialized
 spotifyPlayer.on('initial_state', player => {
+  // Update view
   updateTrack(player.item);
   progress = player.progress_ms;
   duration = player.item.duration_ms;
   updateProgress();
   isPlaying = player.is_playing
   updatePlayPause();
+
+  // Show player
+  logoutButton.className = logoutButton.className.replace(' disabled', '');
+  loginContainer.style.display = 'none';
+  mainContainer.style.display = 'block';
 });
 
 // Track changed
@@ -107,24 +113,12 @@ spotifyPlayer.on('playback_paused', track => {
 });
 
 
-
-// Hide login panel and show player after succesful authorization
-spotifyPlayer.on('login', user => {
-  if (user === null) {
-    loginContainer.style.display = 'block';
-    mainContainer.style.display = 'none';
-  } else {
-    logoutButton.className = logoutButton.className.replace(' disabled', '');
-    loginContainer.style.display = 'none';
-    mainContainer.style.display = 'block';
-  }
-});
-
 // Log into spotify on click
 loginButton.addEventListener('click', () => {
   spotifyPlayer.login();
 });
 
+// Log out on click
 logoutButton.addEventListener('click', () => {
   if (spotifyPlayer.isLoggedIn()) {
     spotifyPlayer.logout();
@@ -148,8 +142,7 @@ if (COBI.parameters.state() == COBI.state.edit) {
   COBI.hub.externalInterfaceAction.subscribe(function(action) {
     if (action == 'LEFT') spotifyPlayer.previous();
     if (action == 'RIGHT') spotifyPlayer.next();
-    if (action == 'SELECT') spotifyPlayer.togglePlay();
-    if (action == 'DOWN') spotifyPlayer.addCurrentToCobiPlaylist();
+    if (action == 'SELECT') isPlaying ? spotifyPlayer.pause() : spotifyPlayer.play();
   });
 }
 
