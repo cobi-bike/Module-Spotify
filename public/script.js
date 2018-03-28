@@ -73,21 +73,32 @@ spotifyPlayer.on('track_change', track => {
 });
 
 // Track has ended
-spotifyPlayer.on('track_end', track => {
+spotifyPlayer.on('track_end', () => {
   progress = duration;
   updateProgress();
 });
 
 // Play button pressed
-spotifyPlayer.on('playback_started', track => {
+spotifyPlayer.on('playback_started', () => {
   isPlaying = true;
   updatePlayPause();
 });
 
 // Pause button pressed
-spotifyPlayer.on('playback_paused', track => {
+spotifyPlayer.on('playback_paused', () => {
   isPlaying = false;
   updatePlayPause();
+});
+
+// Log errors
+spotifyPlayer.on('connect_error', error => {
+  console.log(error);
+});
+
+// Socket connection closed by server
+spotifyPlayer.on('disconnect', () => {
+  // Reload page to prompt user with login again
+  location.reload();
 });
 
 
