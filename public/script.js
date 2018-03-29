@@ -19,16 +19,17 @@ var spotifyPlayer = new WebsocketSpotifyPlayer({
 var isPlaying = false;
 var progress = 0;
 var duration = 0;
+var update_interval = 1000; // ms
 
 // Start automatic progress loop
 function progressLoop() {
   // Increase progress if track is played
   if (isPlaying) {
-    progress += 1000;
+    progress += update_interval;
   }
   updateProgress()
 }
-setInterval(progressLoop, 1000);
+setInterval(progressLoop, update_interval);
 
 // Update progress bar
 function updateProgress() {
@@ -88,6 +89,12 @@ spotifyPlayer.on('playback_started', () => {
 spotifyPlayer.on('playback_paused', () => {
   isPlaying = false;
   updatePlayPause();
+});
+
+// Skipped to new timestamp
+spotifyPlayer.on('seek', new_progress => {
+  progress = new_progress;
+  updateProgress();
 });
 
 // Log errors
