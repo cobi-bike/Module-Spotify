@@ -16,7 +16,7 @@ class WebsocketSpotifyPlayer extends SpotifyPlayer {
   _onNewAccessToken() {
     super._onNewAccessToken();
     if (this.accessToken !== '') {
-      this.socket.emit('initiate', { accessToken: spotifyPlayer.accessToken })
+      this.socket.emit('initiate', { accessToken: this.accessToken })
     }
   }
 
