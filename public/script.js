@@ -17,6 +17,7 @@ var spotifyPlayer = new WebsocketSpotifyPlayer({
 
 
 var isPlaying = false;
+var isLoggedIn = false;
 var progress = 0;
 var duration = 0;
 var update_interval = 1000; // ms
@@ -58,6 +59,7 @@ spotifyPlayer.on('initial_state', player => {
   updateProgress();
   isPlaying = player.is_playing
   updatePlayPause();
+  isLoggedIn = true;
 
   // Show player
   logoutButton.className = logoutButton.className.replace(' disabled', '');
@@ -97,9 +99,15 @@ spotifyPlayer.on('seek', new_progress => {
   updateProgress();
 });
 
-// Log errors
+// Catch errors
 spotifyPlayer.on('connect_error', error => {
-  console.log(error);
+  if (error == 'No active device' && isLoggedIn) {
+    // User logged out
+    // Reload page to prompt user with login again
+    location.reload();
+  } else {
+    console.debug(error);
+  }
 });
 
 // Socket connection closed by server
