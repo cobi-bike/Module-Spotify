@@ -7,9 +7,16 @@ Its part of a collection of Open Source [modules](https://cobi.bike/devkit) for 
 
 ## Quickstart: Interactive Demo
 
-The quickest way to test the module:
+The quickest way to test the module via [Glitch.com](https://glitch.com):
 
 [<img src="https://cdn.cobi.bike/static/devkit-assets/github/open_demo_button.png" width="170px" alt="Open demo button">](https://glitch.com/edit/#!/import/github/cobi-bike/Module-Spotify)
+
+Glitch.com allows you to edit, host and fork Node.js applications for quick prototyping.
+Follow the [installation steps 2 to 3](#installation-and-setup) and copy the environment variables to the: `.env` file on Glitch.com
+
+## Overview
+This module relies on the [Spotify API](https://developer.spotify.com/web-api/) to poll and control	the current playback.
+To save bandwidth the polling is done on the backend and changes will be forwarded through Websockets.
 
 ## Installation and Setup
 
