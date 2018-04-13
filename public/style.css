@@ -24,6 +24,7 @@ body {
   color: #FFF;
   font-family: 'UniSansBook', Helvetica, Arial;
   font-size: 3vmin;
+  margin: 0px;
 }
 
 .hidden {
