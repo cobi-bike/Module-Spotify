@@ -3,8 +3,11 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var request = require('request');
+var socketio = require('socket.io');
+var connectSocket = require('spotify-connect-ws');
 
 var app = express();
+
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -174,6 +177,11 @@ app.post('/token', function(req, res) {
   }
 });
 
-app.listen(app.get('port'), function() {
+// Initialize http server
+var server = app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
+
+// Initialize websockets
+var io = socketio(server)
+io.of('connect').on('connection', connectSocket.default);

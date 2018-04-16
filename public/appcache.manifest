@@ -1,0 +1,13 @@
+CACHE MANIFEST
+# Version 5
+
+CACHE:
+# Defines resources to be cached 
+script.js
+spotify-player.js
+websocket-spotify-player.js
+socket.io.js
+style.css
+
+NETWORK:
+*

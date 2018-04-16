@@ -8,11 +8,23 @@
   box-sizing: border-box;
 }
 
+html, body, .container, #experience, #edit {
+  height: 100%;
+}
+
+#experience, #edit {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
 body {
   background-color: #2d2d37;
   color: #FFF;
   font-family: 'UniSansBook', Helvetica, Arial;
   font-size: 3vmin;
+  margin: 0px;
 }
 
 .hidden {
@@ -167,13 +179,6 @@ body {
   position: relative;
   width: 90%;
   z-index: 1;
-}
-
-.container {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  height: 100%;
 }
 
 dialog {

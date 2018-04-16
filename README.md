@@ -7,9 +7,16 @@ It's part of a collection of Open Source [modules](https://cobi.bike/devkit) for
 
 ## Quickstart: Interactive Demo
 
-The quickest way to test the module:
+The quickest way to test the module via [Glitch.com](https://glitch.com):
 
 [<img src="open_demo.png" width="250px" alt="Open demo button">](https://glitch.com/edit/#!/import/github/cobi-bike/Module-Spotify)
+
+Glitch.com allows you to edit, host and fork Node.js applications for quick prototyping.
+Follow the [installation steps 2 to 3](#installation-and-setup) and copy the environment variables to the: `.env` file on Glitch.com
+
+## Overview
+This module relies on the [Spotify API](https://developer.spotify.com/web-api/) to poll and control	the current playback.
+To save bandwidth the polling is done on the backend and changes will be forwarded through Websockets.
 
 ## Installation and Setup
 
@@ -47,14 +54,16 @@ The settings menu can be accessed with the [?state=edit](http://localhost:3000/?
 
 ### _Optional_: Install COBI.bike DevKit Simulator
 
-Follow the [instructions](https://github.com/cobi-bike/DevKit#-test-your-module) to install the COBI.bike Google Chrome Simulator and get familiar with the basics of module development on the COBI plattform.
+Follow the [instructions](https://github.com/cobi-bike/DevKit#-test-your-module) to install the COBI.bike Google Chrome Simulator and get familiar with the basics of module development on the COBI platform.
 
 ---
 
 ## Credits
 This module uses Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to these developers for their contributions to open source.
 
-[Spotify Player](https://github.com/JMPerez/spotify-player) by José M. Pérez (MIT)
+* [Spotify Player](https://github.com/JMPerez/spotify-player) by José M. Pérez (MIT)
+* [Spotify-Conect-WS](https://github.com/lrholmes/spotify-connect-ws/) by Lawrence Holmes (MIT)
+
 
 ## Useful DevKit links
 
@@ -67,7 +76,7 @@ This module uses Open Source components. You can find the source code of their o
 
 ## Contributing to this project
 
-Anyone and everyone is welcome to contribute to this project, the [DevKit Simulator](https://github.com/cobi-bike/DevKit-Simulator) and the [COBI.bike DevKit UI Components](https://github.com/cobi-bike/DevKit-UI). Please take a moment to review the [guidelines for contributing](https://github.com/cobi-bike/DevKit/blob/master/CONTRIBUTING.md).
+Anyone and everyone is welcome to contribute to this project, the [DevKit Simulator](https://github.com/cobi-bike/DevKit-Simulator) and the [DevKit UI Components](https://github.com/cobi-bike/DevKit-UI). Please take a moment to review the [guidelines for contributing](https://github.com/cobi-bike/DevKit/blob/master/CONTRIBUTING.md).
 
 * [Bug reports](https://github.com/cobi-bike/DevKit/blob/master/CONTRIBUTING.md#bugs)
 * [Feature requests](https://github.com/cobi-bike/DevKit/blob/master/CONTRIBUTING.md#features)
