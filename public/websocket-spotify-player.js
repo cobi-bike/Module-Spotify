@@ -3,7 +3,7 @@ class WebsocketSpotifyPlayer extends SpotifyPlayer {
 
   constructor(options = {}) {
     super(options);
-    this.socket = io(this.exchangeHost + '/connect')
+    this.socket = io(`${window.location.origin}/connect`, { path: `${window.location.pathname}socket.io` })
   }
 
   // Also allow to register websocket events
